@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const helmet = require("helmet");
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
 const connectDB = require('./config/db')
@@ -24,6 +25,7 @@ app.use(
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(helmet());
 app.use(
   helmet({
     contentSecurityPolicy: false
