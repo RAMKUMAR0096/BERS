@@ -24,6 +24,12 @@ app.use(
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(
+  helmet({
+    contentSecurityPolicy: false
+  })
+);
+
 
 app.use("/api",router)
 
