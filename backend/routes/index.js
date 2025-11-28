@@ -33,6 +33,8 @@ const { sendOtp } = require('../controller/user/emailVerification')
 const forgotPassword=require('../controller/user/forgotPassword')
 const changeProfilepic = require('../controller/user/changeProfilepic')
 const trackingId = require('../controller/order/trackingId')
+const updateOrderStatus = require('../controller/order/updateOrderStatus')
+
 
 
 
@@ -75,6 +77,7 @@ router.post('/webhook',webhooks) //api/webhook
 router.get("/order-list",authToken,orderController)
 router.get("/all-order",authToken,allOrderController)
 router.post("/cancel-order",authToken,cancelOrderController)
+router.post("/update-status",authToken,updateOrderStatus);
 router.post("/tracking-id",authToken,trackingId)
 router.post("/order-sent",authToken,orderSentController)
 
