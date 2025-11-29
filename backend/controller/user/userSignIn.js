@@ -30,18 +30,21 @@ async function userSignInController(req,res){
         }
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, { expiresIn: 60 * 60 * 8 });
 
-        const tokenOption = {
-            httpOnly : true,
-            secure : true,
-            sameSite:'None'
-        }
+       const tokenOption = {
+             httpOnly: true,
+             secure: true,
+             sameSite: "none",
+             path: "/"            // REQUIRED FOR VERCEL
+        };
 
-        res.cookie("token",token,tokenOption).status(200).json({
-            message : "Login successfully",
-            data : token,
-            success : true,
-            error : false
-        })
+       res.cookie("token", token, tokenOption);
+
+       return res.status(200).json({
+               message: "Login successfully",
+               success: true,
+               error: false
+       });
+
 
        }else{
          throw new Error("Please check Password")
